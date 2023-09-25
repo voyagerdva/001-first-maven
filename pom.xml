@@ -6,8 +6,8 @@
 
   <groupId>nn.ru</groupId>
   <artifactId>001-first-maven</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
+  <version>1.0.0</version>
+  <packaging>war</packaging>
 
   <name>001-first-maven</name>
   <!-- FIXME change it to the project's website -->
@@ -65,26 +65,59 @@
   </dependencies>
 
   <build>
+    <plugins>
+
+    </plugins>
+    <finalName>ROOT</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-failsafe-plugin</artifactId>
+          <version>3.1.2</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>integration-test</goal>
+                <goal>verify</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.0.2</version>
+          <executions>
+            <execution>
+              <id>copy-docker-files</id>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <phase>validate</phase>
+              <configuration>
+                <outputDirectory>${project.basedir}/target</outputDirectory>
+                <resources>
+                  <resource>
+                    <directory>${project.basedir}/docker</directory>
+                  </resource>
+                </resources>
+              </configuration>
+            </execution>
+
+          </executions>
+        </plugin>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.3.1</version>
+        </plugin>
         <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
-        <plugin>
-          <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.8.0</version>
-        </plugin>
-        <plugin>
-          <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.1</version>
-        </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.0.2</version>
@@ -113,43 +146,47 @@
           <configuration>
             <source>15</source>
             <target>15</target>
-            
+            <!--          <skip>true</skip>-->
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>compile</goal>
+              </goals>
+              <phase>validate</phase>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>2.22.2</version>
+          <configuration>
+            <includes>
+              <include>
+
+              </include>
+            </includes>
           </configuration>
         </plugin>
       </plugins>
     </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>15</source>
-          <target>15</target>
-<!--          <skip>true</skip>-->
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version> 2.22.1</version>
-        <configuration>
-<!--          <skip>true</skip>-->
-        </configuration>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>2.22.2</version>
-        <configuration>
-          <includes>
-            <include>
-              
-            </include>
-          </includes>
-        </configuration>
-      </plugin>
-    </plugins>
+
   </build>
+
+  <distributionManagement>
+    <snapshotRepository>
+      <id>nexus3</id>
+      <url>http://localhost:8081/repository/maven-snapshots/</url>
+      
+    </snapshotRepository>
+    <repository>
+      <id>nexus3</id>
+      <url>http://localhost:8081/repository/maven-releases/</url>
+      
+    </repository>
+
+  </distributionManagement>
 
 
 </project>
