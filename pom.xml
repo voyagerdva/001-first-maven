@@ -5,7 +5,7 @@
 
   <groupId>nn.ru</groupId>
   <artifactId>001-first-maven</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <modules>
     <module>database</module>
     <module>service</module>
@@ -19,7 +19,7 @@
     <connection>scm:git:git@github.com:voyagerdva/001-first-maven.git</connection>
     <developerConnection>scm:git:git@github.com:voyagerdva/001-first-maven.git</developerConnection>
     <url>https://github.com/voyagerdva/001-first-maven</url>
-    <tag>001-first-maven-1.0.0</tag>
+    <tag>HEAD</tag>
   </scm>
   <!-- FIXME change it to the project's website -->
 
