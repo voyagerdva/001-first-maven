@@ -7,10 +7,12 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="database" />
-        <module name="hello-plugin" />
         <module name="web" />
         <module name="service" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="hello-plugin" target="15" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -11,7 +11,7 @@
     <module>database</module>
     <module>service</module>
     <module>web</module>
-    <module>hello-plugin</module>
+<!--    <module>hello-plugin</module>-->
   </modules>
   <packaging>pom</packaging>
 
@@ -22,7 +22,6 @@
     <url>https://github.com/voyagerdva/001-first-maven</url>
   </scm>
   <!-- FIXME change it to the project's website -->
-  <url>https://www.example.com</url>
 
   <properties>
     <app.env>dev</app.env>
