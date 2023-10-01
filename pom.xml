@@ -11,10 +11,16 @@
     <module>database</module>
     <module>service</module>
     <module>web</module>
+    <module>hello-plugin</module>
   </modules>
   <packaging>pom</packaging>
 
   <name>001-first-maven</name>
+  <scm>
+    <connection>scm:git:git@github.com:voyagerdva/001-first-maven.git</connection>
+    <developerConnection>scm:git:git@github.com:voyagerdva/001-first-maven.git</developerConnection>
+    <url>https://github.com/voyagerdva/001-first-maven</url>
+  </scm>
   <!-- FIXME change it to the project's website -->
   <url>https://www.example.com</url>
 
@@ -80,6 +86,16 @@
         <filtering>true</filtering>
       </resource>
     </resources>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.5.3</version>
+<!--        <configuration>-->
+<!--          <allowTimestampedSnapshots>true</allowTimestampedSnapshots>-->
+<!--        </configuration>-->
+      </plugin>
+    </plugins>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
